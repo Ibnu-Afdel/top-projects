@@ -18,6 +18,10 @@ const Gameboard = (() => {
         }
     };
 
+    // const resetBoard = () => {
+    //     board = ["", "", "", "", "", "", "", "", ""];
+    // };
+
     return {getBoard, setMove, resetBoard}
 })();
 
@@ -60,9 +64,13 @@ const GameController = (() => {
         }
 
         if (checkWinner()){
-            console.log(`The winner is ${currentPlayer.name}`);
+            const winnerPlayer = document.querySelector('#winner-player');
+            winnerPlayer.textContent = `The winner is ${currentPlayer.name}`
+            // console.log(`The winner is ${currentPlayer.name}`);
             isGameActive = false;
         } else if (Gameboard.getBoard().every(cell => cell !== '')){
+            const winnerPlayer = document.querySelector('#winner-player');
+            winnerPlayer.textContent = 'The Game is Tie'
             console.log('Tie');
             isGameActive = false;
         } else {
@@ -70,7 +78,7 @@ const GameController = (() => {
         }
     }; 
     const resetGame = () => {
-        Gameboard.resetGame();
+        Gameboard.resetBoard();
         isGameActive = true;
         currentPlayer = playerX;
     }
@@ -79,6 +87,7 @@ const GameController = (() => {
 
 const DisplayController = (()=>{
     const gameBoardElement = document.querySelector('#game-board');
+    const playAgainButton = document.querySelector('#playAgainButton')
 
     const cleanBoard = () => {
         while (gameBoardElement.firstChild){
@@ -107,15 +116,12 @@ const DisplayController = (()=>{
         });
     };
 
+    playAgainButton.addEventListener('click', () => {
+        GameController.resetGame();
+        render();
+    });
+
     return {render};
 })();
 
 DisplayController.render();
-
-
-// const handleClick = (event) => {
-//     const cellIndex = event.target.dataset.index;
-//     GameController.makeMove(parseInt(cellIndex));
-
-//     render();
-// }
