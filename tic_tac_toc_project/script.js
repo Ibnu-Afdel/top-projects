@@ -2,7 +2,7 @@ const Gameboard = (() => {
     const board = ['', '', '', '', '', '', '', '', ''];
     const getBoard = () => board ;
     
-    const makeMove = function (index, mark){
+    const makeMove = (index, mark) => {
         if (board[index] === ''){
             board[index] = mark ;
             return true
@@ -13,7 +13,7 @@ const Gameboard = (() => {
     return {getBoard, makeMove}
 })();
 
-const Player = function(name, mark){
+const Player = (name, mark) => {
     return {name, mark}
 }
 
