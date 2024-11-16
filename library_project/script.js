@@ -24,7 +24,7 @@ function addBookToLibrary(title, author, numberOfPages, isRead){
     showBooks();
 };
 
-addBookToLibrary('Laravel', 'Jeffry', '217', true)
+
 
 function showBooks(){
     const bookContainer = document.querySelector('.container');
