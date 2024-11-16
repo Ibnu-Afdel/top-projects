@@ -1,5 +1,6 @@
 const Gameboard = (() => {
-    const board = ['x', 'o', 'x', 'o', 'x', 'o', 'x', 'o', 'x'];
+    // const board = ['x', 'o', 'x', 'o', 'x', 'o', 'x', 'o', 'x'];
+    const board = ['', '', '', '', '', '', '', '', '']
     const getBoard = () => board ;
     
     const setMove = (index, mark) => {
@@ -27,7 +28,7 @@ const Player = (name, mark) => {
 const GameController = (() => {
 
     const playerX = Player('Player X', 'X')
-    const playerY = Player('Player Y', 'Y')
+    const playerY = Player('Player O', 'O')
 
     let currentPlayer = playerX;
     let isGameActive = true;
@@ -95,6 +96,13 @@ const DisplayController = (()=>{
             cellElement.textContent = cell;
 
             cellElement.dataset.index = index;
+
+            cellElement.addEventListener('click', (event)=>{
+                const cellIndex = event.target.dataset.index;
+                GameController.makeMove(parseInt(cellIndex));
+                render()
+            });
+
             gameBoardElement.appendChild(cellElement);
         });
     };
@@ -103,3 +111,11 @@ const DisplayController = (()=>{
 })();
 
 DisplayController.render();
+
+
+// const handleClick = (event) => {
+//     const cellIndex = event.target.dataset.index;
+//     GameController.makeMove(parseInt(cellIndex));
+
+//     render();
+// }
