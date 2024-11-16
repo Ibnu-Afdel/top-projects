@@ -1,5 +1,5 @@
 const Gameboard = (() => {
-    const board = ['', '', '', '', '', '', '', '', ''];
+    const board = ['x', 'o', 'x', 'o', 'x', 'o', 'x', 'o', 'x'];
     const getBoard = () => board ;
     
     const setMove = (index, mark) => {
@@ -10,11 +10,13 @@ const Gameboard = (() => {
             return false
         }
     } 
+
     const resetBoard = () => {
         for (let i = 0; i < board.length; i++) {
             board[i] = '';
         }
     };
+
     return {getBoard, setMove, resetBoard}
 })();
 
@@ -73,3 +75,31 @@ const GameController = (() => {
     }
     return {makeMove, resetGame}
 })();
+
+const DisplayController = (()=>{
+    const gameBoardElement = document.querySelector('#game-board');
+
+    const cleanBoard = () => {
+        while (gameBoardElement.firstChild){
+            gameBoardElement.removeChild(gameBoardElement.firstChild);
+        };
+    };
+
+    const render = () => {
+        cleanBoard();
+        const board = Gameboard.getBoard();
+
+        board.forEach((cell,index) => {
+            const cellElement = document.createElement('div');
+            cellElement.classList.add('cell');
+            cellElement.textContent = cell;
+
+            cellElement.dataset.index = index;
+            gameBoardElement.appendChild(cellElement);
+        });
+    };
+
+    return {render};
+})();
+
+DisplayController.render();
