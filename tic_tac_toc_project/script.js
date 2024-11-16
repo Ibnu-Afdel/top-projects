@@ -10,7 +10,12 @@ const Gameboard = (() => {
             return false
         }
     } 
-    return {getBoard, setMove}
+    const resetBoard = () => {
+        for (let i = 0; i < board.length; i++) {
+            board[i] = '';
+        }
+    };
+    return {getBoard, setMove, resetBoard}
 })();
 
 const Player = (name, mark) => {
@@ -62,7 +67,7 @@ const GameController = (() => {
         }
     }; 
     const resetGame = () => {
-        // Gameboard.resetGame();
+        Gameboard.resetGame();
         isGameActive = true;
         currentPlayer = playerX;
     }
