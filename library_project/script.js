@@ -36,22 +36,22 @@ function showBooks(){
 
         const bookTitle = document.createElement('h2');
         bookTitle.classList.add('bookTitle');
-        bookTitle.textContent = book.title;
+        bookTitle.textContent = `Title: ${book.title}`;
         bookCard.appendChild(bookTitle)
 
         const bookAuthor = document.createElement('p');
         bookAuthor.classList.add('bookAuthor');
-        bookAuthor.textContent = book.author;
+        bookAuthor.textContent = `Author: ${book.author}`;
         bookCard.appendChild(bookAuthor);
 
         const bookPage = document.createElement('p');
         bookPage.classList.add('bookPage');
-        bookPage.textContent = book.numberOfPages;
+        bookPage.textContent = `Total Pages: ${book.numberOfPages}`;
         bookCard.appendChild(bookPage);
 
         const isRead = document.createElement('p');
         isRead.classList.add('isRead');
-        isRead.textContent = (book.isRead ? 'Yes' : 'No');
+        isRead.textContent = `Finished before: ${(book.isRead ? 'Yes' : 'No')}`;
         bookCard.appendChild(isRead)
 
         const toggleReadButton = document.createElement('button');
