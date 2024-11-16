@@ -7,7 +7,29 @@
 </head>
 <body>
     <h1>My Books</h1>
+    <button id="new-book-button">New Book</button>
     <div class="container"></div>
+
+    <dialog id="book-dialog">
+        <form  id="new-book-form">
+            <h2 id="dialog-title"></h2>
+
+        <label for="title">Title</label>
+        <input type="text" name="title" id="title">
+
+        <label for="author">Author</label>
+        <input type="text" name="author" id="author">
+
+        <label for="pages">Pages</label>
+        <input type="number" name="pages" id="pages">
+
+        <label>
+            <input type="checkbox" name="hasRead" id="hasRead">
+        </label>
+        <button id="form-submit-button"></button>
+        <button type="button" onclick="closeDialog()">Cancel</button>
+        </form>
+    </dialog>
 
     <script src="script.js"></script>
 </body>
