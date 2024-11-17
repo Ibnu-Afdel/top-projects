@@ -7,11 +7,53 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Tic Tac Toe</h1>
-    <h2 id="winner-player"></h2>
+    <h1 class="title">Tic Tac Toe</h1>
+   <div id="the-container">
+    <div id="controls">
+        <div id="setup">
+            <input type="text" name="playerXName" id="playerXName" placeholder="Player X Name">
+            <input type="text" name="playerOName" id="playerOName" placeholder="Player O Name">
+
+            <select name="gameMode" id="gameMode">
+                <option value="person">With Person</option>
+                <option value="robot">With Robot</option>
+            </select>
+            <button id="getNamesButton">Get Names</button>
+        </div>
+
+    <div id="mark-choice">
+        <h3>Choose Marks</h3>
+        <div>
+            <input type="radio" id="random" name="mark-choice" value="random">
+            <label for="random">Random (Emojis)</label>
+        </div>
+        <div>
+            <input type="radio" id="custom" name="mark-choice" value="custom" checked>
+            <label for="custom">Custom</label>
+        </div>
+        <!-- Custom Marks Input (only shown when 'Custom' is selected) -->
+        <div id="custom-marks-input">
+            <div id="buttom-inputs">
+                <div>
+                    <label for="playerXMark">Player 1 Mark:</label>
+                    <input type="text" id="playerXMark" placeholder="Choose a mark (default: X)" maxlength="1">
+                </div>
+                <div>
+                    <label for="playerOMark">Player 2 Mark:</label>
+                    <input type="text" id="playerOMark" placeholder="Choose a mark (default: O)" maxlength="1">
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <div id="game-options">
+            <button id="start-button">Start Game</button>
+        </div>
+        <div id="result-display"></div>
+    </div>
 
     <div id="game-board"></div>
-    <button id="playAgainButton">Play Again</button>
+   </div>
     <script src="script.js"></script>
 </body>
 </html>
