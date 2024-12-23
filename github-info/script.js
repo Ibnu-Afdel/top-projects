@@ -7,7 +7,12 @@ async function fetchData(){
     try{
         const responseFromGithub = await fetch(`https://api.github.com/users/${username}`);
         const userData = await responseFromGithub.json();
-        return console.log(userData);
+        console.log(userData);
+
+        const name = document.createElement('h2');
+        name.textContent = userData.name
+
+        document.body.appendChild(name)
         
     } catch(error){
         console.log(`Error : ${error}`);
