@@ -22,7 +22,6 @@ async function fetchData() {
         return;
     }
     const userData = await responseFromGithub.json();
-    console.log(userData); // dont foregt to remove
 
     const repositoryResponse = await fetch(userData.repos_url);
     const repos = await repositoryResponse.json();
@@ -32,7 +31,7 @@ async function fetchData() {
       0
     );
 
-    // its for 30 days
+    // its for around for 30 days
     const eventsResponse = await fetch(
       `https://api.github.com/users/${username}/events`
     );
@@ -43,13 +42,13 @@ async function fetchData() {
 
     const img = document.createElement("img");
     img.src = userData.avatar_url;
-    img.alt = `${userData.name}`; 
+    img.alt = `${userData.name || "User"}'s Avatar`;
 
     const name = document.createElement("h2");
-    name.textContent = userData.name;
+    name.textContent = userData.name || "No Name Provided";
 
     const bio = document.createElement("p");
-    bio.textContent = userData.bio;
+    bio.textContent = userData.bio || "No Bio Provided";
 
     const stats = document.createElement("ul");
 
