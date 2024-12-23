@@ -9,6 +9,17 @@ async function fetchData(){
         const userData = await responseFromGithub.json();
         console.log(userData);
 
+        const repositoryResponse = await fetch(userData.repos_url)
+        const repos = await repositoryResponse.json();
+
+        const totalStars = repos.reduce(
+            (sum, repo) => sum + repo.stargazers_count,0
+        );
+
+        const totalStarShow = document.createElement('p');
+        totalStarShow.textContent = totalStars;
+        document.body.appendChild(totalStarShow)
+
         const img = document.createElement('img');
         img.src = userData.avatar_url;
         document.body.appendChild(img)
