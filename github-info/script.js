@@ -1,14 +1,13 @@
 const usernameInput = document.querySelector("#username");
 const searchButton = document.querySelector("#btn");
-const errorDiv = document.querySelector('#error');
-
+const errorDiv = document.querySelector("#error");
 
 async function fetchData() {
   const username = usernameInput.value.trim();
-  errorDiv.textContent = '';
+  errorDiv.textContent = "";
 
-  if(!username){
-    errorDiv.textContent = 'Please enter a username.';
+  if (!username) {
+    errorDiv.textContent = "Please enter a username.";
     return;
   }
 
@@ -17,9 +16,9 @@ async function fetchData() {
       `https://api.github.com/users/${username}`
     );
 
-    if(!responseFromGithub.ok){
-        errorDiv.textContent = 'User not found. check the username.';
-        return;
+    if (!responseFromGithub.ok) {
+      errorDiv.textContent = "User not found. check the username.";
+      return;
     }
     const userData = await responseFromGithub.json();
 
@@ -65,6 +64,9 @@ async function fetchData() {
     appendStat("Commits (last 30 days)", commitCount);
     appendStat("Account Created", new Date(userData.created_at).toDateString());
 
+    const previousData = document.querySelector("#result");
+    if (previousData) previousData.remove();
+
     const resultContainer = document.createElement("div");
     resultContainer.id = "result";
     resultContainer.appendChild(img);
@@ -75,7 +77,8 @@ async function fetchData() {
     document.body.appendChild(resultContainer);
   } catch (error) {
     console.log(`Error : ${error}`);
-    errorDiv.textContent = 'Error occured while fetching data. Please try again.';
+    errorDiv.textContent =
+      "Error occured while fetching data. Please try again.";
   }
 }
 
