@@ -16,9 +16,21 @@ async function fetchData(){
             (sum, repo) => sum + repo.stargazers_count,0
         );
 
+        // its for 30 days
+        const eventsResponse =  await fetch(`https://api.github.com/users/${username}/events`);
+        const events = await eventsResponse.json();
+        const commitCount = events.filter(
+            event => event.type === 'PushEvent'
+        ).length;
+
+
         const totalStarShow = document.createElement('p');
         totalStarShow.textContent = totalStars;
         document.body.appendChild(totalStarShow)
+
+        const commitCountShow = document.createElement('p');
+        commitCountShow.textContent = `Around latest 30 days commit: ${commitCount}`;
+        document.body.appendChild(commitCountShow)
 
         const img = document.createElement('img');
         img.src = userData.avatar_url;
