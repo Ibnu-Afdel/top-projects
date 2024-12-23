@@ -1,15 +1,28 @@
 const usernameInput = document.querySelector("#username");
 const searchButton = document.querySelector("#btn");
+const errorDiv = document.querySelector('#error');
+
 
 async function fetchData() {
-  const username = usernameInput.value;
+  const username = usernameInput.value.trim();
+  errorDiv.textContent = '';
+
+  if(!username){
+    errorDiv.textContent = 'Please enter a username.';
+    return;
+  }
 
   try {
     const responseFromGithub = await fetch(
       `https://api.github.com/users/${username}`
     );
+
+    if(!responseFromGithub.ok){
+        errorDiv.textContent = 'User not found. check the username.';
+        return;
+    }
     const userData = await responseFromGithub.json();
-    console.log(userData);
+    console.log(userData); // dont foregt to remove
 
     const repositoryResponse = await fetch(userData.repos_url);
     const repos = await repositoryResponse.json();
@@ -30,6 +43,7 @@ async function fetchData() {
 
     const img = document.createElement("img");
     img.src = userData.avatar_url;
+    img.alt = `${userData.name}`; 
 
     const name = document.createElement("h2");
     name.textContent = userData.name;
@@ -62,6 +76,7 @@ async function fetchData() {
     document.body.appendChild(resultContainer);
   } catch (error) {
     console.log(`Error : ${error}`);
+    errorDiv.textContent = 'Error occured while fetching data. Please try again.';
   }
 }
 
