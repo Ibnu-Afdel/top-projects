@@ -28,27 +28,14 @@ async function fetchData() {
       (event) => event.type === "PushEvent"
     ).length;
 
-    const totalStarShow = document.createElement("p");
-    totalStarShow.textContent = totalStars;
-    document.body.appendChild(totalStarShow);
-
-    const commitCountShow = document.createElement("p");
-    commitCountShow.textContent = `Around latest 30 days commit: ${commitCount}`;
-    document.body.appendChild(commitCountShow);
-
     const img = document.createElement("img");
     img.src = userData.avatar_url;
-    document.body.appendChild(img);
 
     const name = document.createElement("h2");
     name.textContent = userData.name;
 
-    document.body.appendChild(name);
-
     const bio = document.createElement("p");
     bio.textContent = userData.bio;
-
-    document.body.appendChild(bio);
 
     const stats = document.createElement("ul");
 
@@ -65,9 +52,14 @@ async function fetchData() {
     appendStat("Commits (last 30 days)", commitCount);
     appendStat("Account Created", new Date(userData.created_at).toDateString());
 
-    document.body.appendChild(stats);
+    const resultContainer = document.createElement("div");
+    resultContainer.id = "result";
+    resultContainer.appendChild(img);
+    resultContainer.appendChild(name);
+    resultContainer.appendChild(bio);
+    resultContainer.appendChild(stats);
 
-   
+    document.body.appendChild(resultContainer);
   } catch (error) {
     console.log(`Error : ${error}`);
   }
