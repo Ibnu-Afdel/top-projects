@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Todo App</h1>
+    </header>
+    <main>
+            <div id="project-container">
+            <h2>Projects</h2>
+            <ul id="project-list"></ul>
+            <button id="add-project">Add Project</button>
+        </div>
+
+        <div id="expanded-view" class="hidden"></div>
+
+        
+        <section id="todo-container">
+            <h2>My Todos</h2>
+
+            <form id="todo-form">
+                <input type="text" id="title" placeholder="Todo title" required>
+                <textarea id="description" placeholder="Description" required></textarea>
+                <input type="date" id="dueDate" required>
+                <select id="priority" required>
+                    <option value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
+                </select>
+                <button type="submit">Add Todo</button>
+            </form>
+
+            <div>
+                <input type="text" id="search-bar" placeholder="Search todos...">
+            </div>
+
+            <div id="sort-container">
+                <label for="sort-todos">Sort Todos: </label>
+                <select id="sort-todos">
+                    <option value="priority">Priority</option>
+                    <option value="dueDate">Due Date</option>
+                </select>
+            </div>
+
+            <ul id="todo-list"></ul>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Todo App</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
