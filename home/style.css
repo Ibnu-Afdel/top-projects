@@ -45,9 +45,6 @@ header {
     transform: translateX(-3px);
 }
 
-
-
-
 .project-topic{
     text-align: center;
 }
@@ -66,10 +63,6 @@ header {
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s;
-}
-
-.project-card.laravel {
-    box-shadow: 0 4px 8px rgba(255, 147, 147, 0.2);
 }
 
 .project-card.javascript {
